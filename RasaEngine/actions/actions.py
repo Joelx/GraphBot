@@ -83,24 +83,6 @@ class ValidateNameForm(FormValidationAction):
             return {"first_name": slot_value}
 
 
-    # def validate_last_name(
-    #         self,
-    #         slot_value: Any,
-    #         dispatcher: CollectingDispatcher,
-    #         tracker: Tracker,
-    #         domain: DomainDict,
-    # ) -> Dict[Text, Any]:
-    #     """Validate `last_name` value."""
-    #
-    #     # If the name is super short, it might be wrong.
-    #     print(f"Last name given = {slot_value} length = {len(slot_value)}")
-    #     if len(slot_value) <= 1:
-    #         dispatcher.utter_message(text=f"That's a very short name. I'm assuming you mis-spelled.")
-    #         return {"last_name": None}
-    #     else:
-    #         return {"last_name": slot_value}
-
-
 class ValidateContraceptionForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_contraception_form"
@@ -126,19 +108,15 @@ class ValidateContraceptionForm(FormValidationAction):
         gender = ""
         tracker_gender = tracker.get_slot("gender")
         if tracker_gender:
-            #dispatcher.utter_message("Du bist " + tracker.get_slot("gender"))
             print(tracker_gender)
-            #return {"gender": slot_value}
         if tracker_gender.lower() in genders_female:
             gender = "weiblich"
         elif tracker_gender.lower() in genders_male:
             gender = "männlich"
         else:
             gender = "divers"
-      #  dispatcher.utter_message("Validating gender..")
         name = tracker.get_slot("first_name")
         print("Setting user gender: " + gender)
-        #bot_mem.add_property(name, "gender", gender)
         bot_mem.add_gender(name, gender)
         return {"gender": gender}
 
@@ -152,11 +130,7 @@ class ValidateContraceptionForm(FormValidationAction):
         age = tracker.get_slot("age")
         if age:
             dispatcher.utter_message("Du bist " + tracker.get_slot('gender') + " und " + age + " Jahre alt.")
-            #return {"age": slot_value}
-        # TODO: Validiere alter.. z.b. zwischen 5 und 50 oder so
-      #  dispatcher.utter_message("Validating age..")
         name = tracker.get_slot("first_name")
-        #bot_mem.add_property(name, "age", slot_value)
         bot_mem.add_age(name, age)
         return {"age": age}
 
@@ -176,16 +150,16 @@ class ContraceptionInfo(Action):
                 dispatcher.utter_message("Tut mir leid. Ich kann dir hier gerade nicht helfen :(")
                 return []
             # Create dict with contraception as value and frequency as value
-            #individualContraceptionCount = {i:results.count(i) for i in results}
+            # individualContraceptionCount = {i:results.count(i) for i in results}
             # Sort by frequency
-            #dict(sorted(individualContraceptionCount.items(), key=lambda item: item[1]))
+            # dict(sorted(individualContraceptionCount.items(), key=lambda item: item[1]))
             if len(results) > 1:
                 dispatcher.utter_message("Basierend auf deinem Alter und Geschlecht "
                                          "könnten die folgenden Verhütungsmethoden zu dir passen: ")
             else:
                 dispatcher.utter_message("Basierend auf deinem Alter und Geschlecht "
                                          "könnte die folgenden Verhütungsmethode zu dir passen: ")
-            # Remove duplicates .. TODO: use freuency of occurence
+            # Remove duplicates
             seen = set()
             result = []
             for dic in results:
