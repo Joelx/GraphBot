@@ -1,0 +1,96 @@
+version: "2.0"
+
+rules:
+
+- rule: respond to chitchat
+  steps:
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: utter_help_offer
+
+- rule: Register
+  condition:
+  - slot_was_set:
+    - first_name: false
+  steps:
+  - action: utter_not_registered
+  - action: name_form
+  - active_loop: name_form
+#  - action: utter_offer_service
+
+#- rule: Service
+#  condition:
+#  - slot_was_set:
+#    - first_name: true
+#  steps:
+#  - intent: greet
+#  - action: utter_offer_service
+
+#- rule: Say `hello` when the user starts a conversation with intent `greet` and register him
+#  conversation_start: true
+#  steps:
+#  - intent: greet
+#  - action: name_form
+#  - active_loop: name_form
+
+
+#- rule: Register
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  condition:
+#  - slot_was_set:
+#    - first_name: false
+#  - action: name_form
+#  - active_loop: name_form
+
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Activate form
+  steps:
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
+
+- rule: Activate contraception form
+  steps:
+  - intent: inform_contraception
+  - action: contraception_form
+  - active_loop: contraception_form
+
+- rule: Activate form initial
+  steps:
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+
+- rule: Submit form
+  condition:
+  - active_loop: name_form
+  steps:
+  - action: name_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: utter_offer_service
+
+- rule: Submit contraception form
+  condition:
+  - active_loop: contraception_form
+  steps:
+  - action: contraception_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_contraception_form_submit

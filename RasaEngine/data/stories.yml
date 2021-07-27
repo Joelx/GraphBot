@@ -1,0 +1,518 @@
+version: "2.0"
+
+stories:
+
+#- story: greeting
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+
+
+#- story: happy path
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: mood_great
+#  - action: utter_happy
+#
+#- story: sad path 1
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: mood_unhappy
+#  - action: utter_cheer_up
+#  - action: utter_did_that_help
+#  - intent: affirm
+#  - action: utter_happy
+#
+#- story: sad path 2
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: mood_unhappy
+#  - action: utter_cheer_up
+#  - action: utter_did_that_help
+#  - intent: deny
+#  - action: utter_goodbye
+#
+#
+#- story: interactive_story_0
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: request_names
+#  - action: name_form
+#  - active_loop: name_form
+#  - slot_was_set:
+#    - requested_slot: first_name
+#  - slot_was_set:
+#    - first_name: vincent
+#  #- slot_was_set:
+#  #  - requested_slot: last_name
+#  #- slot_was_set:
+#  #  - last_name: vincent-mcvincent
+#  - slot_was_set:
+#    - requested_slot: null
+#  - active_loop: null
+#  - action: utter_submit
+#  - action: utter_slots_values
+
+
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: joe
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: tim
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+
+- story: interactive_story_3
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Kathrin
+  - slot_was_set:
+    - name_spelled_correctly: null
+  - slot_was_set:
+    - first_name: Kathrin
+  - slot_was_set:
+    - requested_slot: name_spelled_correctly
+  - slot_was_set:
+    - name_spelled_correctly: true
+  - slot_was_set:
+    - first_name: Kathrin
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+
+- story: interactive_story_4
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - name_spelled_correctly: null
+  - slot_was_set:
+    - first_name: John
+  - slot_was_set:
+    - requested_slot: name_spelled_correctly
+  - slot_was_set:
+    - name_spelled_correctly: true
+  - slot_was_set:
+    - first_name: John
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+
+- story: interactive_story_5
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: John
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+
+- story: interactive_story_6
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Ben
+  - slot_was_set:
+    - first_name: Ben
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+
+- story: interactive_story_7
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Tim
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+  - intent: inform_contraception
+  - action: contraception_form
+  - active_loop: contraception_form
+  - slot_was_set:
+    - requested_slot: gender
+  - slot_was_set:
+    - gender: Junge
+  - slot_was_set:
+    - requested_slot: gender
+
+- story: interactive_story_8
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Paul
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+  - intent: inform_contraception
+  - action: contraception_form
+  - active_loop: contraception_form
+  - slot_was_set:
+    - requested_slot: gender
+  - slot_was_set:
+    - gender: Junge
+  - slot_was_set:
+    - gender: Junge
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '15'
+  - slot_was_set:
+    - age: '15'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_contraception_form_submit
+
+- story: interactive_story_9
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+    entities:
+    - affirm: jup
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Julia
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+  - intent: inform_contraception
+  - action: contraception_form
+  - active_loop: contraception_form
+  - slot_was_set:
+    - requested_slot: gender
+  - slot_was_set:
+    - gender: mädchen
+  - slot_was_set:
+    - gender: mädchen
+  - slot_was_set:
+    - gender: mädchen
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '13'
+  - slot_was_set:
+    - age: '13'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_contraception_form_submit
+
+- story: interactive_story_10
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Katharina
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: utter_help_offer
+
+- story: interactive_story_11
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Joe
+  - slot_was_set:
+    - gender: männlich
+  - slot_was_set:
+    - age: '18'
+  - slot_was_set:
+    - user_known: true
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+  - intent: inform_contraception
+  - action: contraception_form
+  - active_loop: contraception_form
+  - slot_was_set:
+    - age: '18'
+  - slot_was_set:
+    - gender: männlich
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_contraception_form_submit
+  - intent: affirm
+    entities:
+    - affirm: jup
+  - action: contraception_info
+  - action: utter_help_offer
+
+- story: interactive_story_12
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Mia
+  - slot_was_set:
+    - gender: weiblich
+  - slot_was_set:
+    - age: '16'
+  - slot_was_set:
+    - user_known: true
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+  - intent: inform_contraception
+  - action: contraception_form
+  - active_loop: contraception_form
+  - slot_was_set:
+    - age: '16'
+  - slot_was_set:
+    - gender: weiblich
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_contraception_form_submit
+  - intent: affirm
+  - action: contraception_info
+
+- story: interactive_story_13
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Mia
+  - slot_was_set:
+    - gender: weiblich
+  - slot_was_set:
+    - age: '16'
+  - slot_was_set:
+    - user_known: true
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: utter_help_offer
+  - intent: inform_contraception
+  - action: contraception_form
+  - active_loop: contraception_form
+  - slot_was_set:
+    - age: '16'
+  - slot_was_set:
+    - gender: weiblich
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_contraception_form_submit
+  - intent: affirm
+    entities:
+    - affirm: jup
+  - action: contraception_info
+  - action: utter_help_offer
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Jonas
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+  - intent: inform_contraception
+  - action: contraception_form
+  - active_loop: contraception_form
+  - slot_was_set:
+    - requested_slot: gender
+  - slot_was_set:
+    - gender: Junge
+  - slot_was_set:
+    - gender: Junge
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '18'
+  - slot_was_set:
+    - age: '18'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_contraception_form_submit
+  - intent: affirm
+  - action: contraception_info
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_not_registered
+  - intent: affirm
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: first_name
+  - slot_was_set:
+    - first_name: Jonas
+  - slot_was_set:
+    - gender: männlich
+  - slot_was_set:
+    - age: null
+  - slot_was_set:
+    - user_known: true
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_offer_service
+  - intent: inform_contraception
+  - action: contraception_form
+  - active_loop: contraception_form
+  - slot_was_set:
+    - gender: männlich
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '19'
+  - slot_was_set:
+    - age: '19'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_contraception_form_submit
+  - intent: affirm
+  - action: contraception_info

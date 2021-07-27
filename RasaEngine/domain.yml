@@ -1,0 +1,133 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- inform_contraception
+- name
+- greet
+- inform_age
+- affirm
+- chitchat:
+    is_retrieval_intent: true
+- inform_gender
+- deny
+- request_names
+- goodbye
+- mood_great
+- mood_unhappy
+- bot_challenge
+entities:
+- affirm
+- age
+- first_name
+- gender
+- name
+slots:
+  first_name:
+    type: text
+    influence_conversation: true
+  gender:
+    type: text
+    influence_conversation: true
+  age:
+    type: text
+    influence_conversation: true
+  name_spelled_correctly:
+    type: bool
+    influence_conversation: true
+  gender_detected:
+    type: bool
+    influence_conversation: true
+  age_plausible:
+    type: bool
+    influence_conversation: true
+  requested_slot:
+    type: unfeaturized
+    influence_conversation: false
+  user_known:
+    type: bool
+    influence_conversation: true
+responses:
+  utter_greet:
+  - text: Hey!
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Konnte ich damit helfen?
+  utter_help_offer:
+  - text: Wie kann ich dir noch helfen? :)
+  utter_happy:
+  - text: Super!
+  utter_goodbye:
+  - text: Ciao!
+  utter_iamabot:
+  - text: Ich bin nur ein Bot :)
+  utter_ask_first_name:
+  - text: Wie heißt du mit Vornamen?
+  utter_ask_last_name:
+  - text: Wie lautet dein Nachname?
+  utter_ask_name_spelled_correctly:
+  - buttons:
+    - payload: /affirm
+      title: Ja
+    - payload: /deny
+      title: Nein
+    text: Ist {first_name} richtig geschrieben?
+  utter_submit:
+  - text: Klasse!
+  utter_contraception_form_submit:
+  - text: Stimmt das?
+  utter_slots_values:
+  - text: Ich werde mir deinen Namen merken, {first_name}!
+  utter_contraception_form_slots_values:
+  - text: Ich werde mir merken, dass du ein {gender} und {age} Jahre alt bist.
+  utter_offer_service:
+  - text: Wie kann ich dir heute helfen, {first_name}?
+  utter_not_registered:
+  - text: Mein Name ist GraphBot. Darf ich deinen Namen erfahren :)?
+  utter_no_register_affirm:
+  - text: That's okay. Just be mindful that not all of my functions are available if you're not registered.
+  utter_inform_contraception:
+  - text: Die richtige Verhütung ist sehr individuell und hängt unter anderem von Geschlecht und Alter ab.
+  utter_ask_gender:
+  - text: Bist Du ein Mädchen oder ein Junge?
+  utter_ask_age:
+  - text: Wie alt bist du?
+  utter_ask_continue:
+  - text: |-
+      Das habe ich nicht verstanden, sorry :(
+      Möchtest es nochmal wiederholen?
+  utter_chitchat/ask_name:
+  - image: https://i.imgur.com/zTvA58i.jpeg
+    text: Mein Name ist GraphBot!
+  - text: Man nennt mich GraphBot!
+  utter_chitchat/ask_weather:
+  - text: Oh, es sieht draußen gerade sehr schön aus!
+    image: https://i.imgur.com/vwv7aHN.png
+  - text: Ich bin mir nicht sicher, wie es den Rest der Woche aussehen wird, aber gerade ist es schön sonnig.
+actions:
+- contraception_info
+- utter_chitchat
+- utter_contraception_form_slots_values
+- utter_contraception_form_submit
+- utter_greet
+- utter_help_offer
+- utter_not_registered
+- utter_offer_service
+- utter_slots_values
+- utter_submit
+- validate_contraception_form
+- validate_name_form
+forms:
+  name_form:
+    required_slots:
+      first_name:
+      - type: from_text
+  contraception_form:
+    required_slots:
+      gender:
+      - type: from_text
+      age:
+      - type: from_text
