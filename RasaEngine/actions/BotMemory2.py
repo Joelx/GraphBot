@@ -1,8 +1,7 @@
 
 
 """
-  A wrapper class to interface with neo4j graph database.
-  The interface is acting as "memory".
+  A wrapper class to transact with a neo4j graph database via Cypher queries.
 """
 
 #from neo4jrestclient.client import GraphDatabase
